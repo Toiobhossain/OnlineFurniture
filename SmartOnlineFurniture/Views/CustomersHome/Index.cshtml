@@ -1,0 +1,398 @@
+﻿@model IEnumerable<SmartOnlineFurniture.Models.Products> 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CustomerHome.cshtml";
+    var count = 0;
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="padding:10px">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i>Aponar Furniture</i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item nav-link active">@Html.ActionLink("Home", "Index", "CustomersHome")</li>
+
+                <li class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Drawing Order", "DrawingOrder", "CustomersHome")</li>
+                <li class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Customer Care", "Care", "CustomersHome")</li>
+                <li class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Signout", "Logout", "Home")</li>
+@if (Session["cart"] != null)
+{
+    foreach (var item in (List<SmartOnlineFurniture.Models.Item>)Session["cart"])
+    {
+        count++;
+
+    }
+}
+
+                @using (Html.BeginForm("Cart", "CustomersHome"))
+                {
+                <li class="nav-item nav-link active" style="color:black"><button type="submit" style="border:none;background:none;font-size:18px;"><span class="icon-shopping_cart">[@count]</span></button></li>
+                }
+
+
+                <li class="nav-item nav-link active"><img src="@ViewBag.Image" width="30" height="30" style="border-radius:50%" /><span style="color:black;padding-left:5px">@Session["CustomerName"]</span></li>
+                
+               
+
+</ul>
+        </div>
+    </div>
+</nav>
+
+
+<section id="home-section" class="hero">
+    <div class="home-slider owl-carousel">
+        <div class="slider-item" style="background-image: url(/Content/images/bg_1.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-12 ftco-animate text-center">
+                        <h1 class="mb-2">We serve Creative Design &amp; Sell</h1>
+                        <h2 class="subheading mb-4">We deliver organic Wood &amp; furniture</h2>
+                        <p><a href="#" class="btn btn-primary">View Details</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item" style="background-image: url(/Content/images/bg_2.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-sm-12 ftco-animate text-center">
+                        <h1 class="mb-2">100% &amp; Orginal Wood</h1>
+                        <h2 class="subheading mb-4">We deliver Orginal Furniture &amp; Creative Design</h2>
+                        <p><a href="#" class="btn btn-primary">View Details</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section">
+    <div class="container">
+        @*@using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.TextBox("searching")<input type="submit" value="Search"/>
+
+                    </div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CompanyId, "CompanyName", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("CompanyId", null, "--Select Company--", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CategoryId, "CategoryName", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("CategoryId", null, "--Select Category--", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Search" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }*@
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <span class="subheading">Featured Products</span>
+                <h2 class="mb-4">Our Products</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <div class="col-md-10">
+
+                        <select name="CompanyName" class="selectpicker" data-style="btn-success" style="border-radius:20px;height:40px;width:220px;padding-left:10px;">
+                            <option value="0">--Select Company--</option>
+                            <option value="RFL">RFL</option>
+                            <option value="Hatil">HATIL</option>
+                            <option value="Regal">REGAL</option>
+                            <option value="Otobi">OTOBI</option>
+                        </select>
+                        <select name="CategoryName" class="selectpicker" data-style="btn-success" style="border-radius:20px;height:40px;width:220px;padding-left:10px;">
+                            <option value="0">--Select Category--</option>
+                            <option value="Bedroom Chair">Bedroom Chair</option>
+                            <option value="Bedroom Sofa">Bedroom Sofa</option>
+                            <option value="Bedroom Bed">Bedroom Bed</option>
+                            <option value="Dining room Table">Dining room Table</option>
+                            <option value="Dining room Sofa">Dining room Sofa</option>
+                            <option value="Dining room Chair">Dining room Chair</option>
+                        </select>
+                        <input type="text" name="searching" class="txtdesign" placeholder="Search..." /><input type="submit" value="Search" class="btn btn-success" />
+                    </div>
+                </div>
+                <br />
+            </div>
+        }
+
+        <div class="row">
+            @if (Model.Count() == 0)
+            {
+                <div colspan="3" style="color:red;padding-left:400px;padding-top:40px;">
+                    No Match Any Document
+                </div>
+            }
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-3 ftco-animate">
+
+                    <div class="product">
+                        <a href="#" class="img-prod">
+                            <img src="@Html.DisplayFor(modelItem => item.ProductImage)" alt="Colorlib Template" width="255" height="170">
+                            @*<span class="status">30%</span>*@
+                            <div class="overlay"></div>
+                        </a>
+                        <div class="text py-3 pb-4 px-3 text-center">
+                            <h3><a href="#">@Html.DisplayFor(modelItem => item.Companies.CompanyName)</a></h3>
+                            <h3><a href="#">@Html.DisplayFor(modelItem => item.ProductName)</a></h3>
+                            @if (item.Quantity > 0)
+                            {
+                                <h6 style="text-align:center;color:green;">Available</h6>
+                            }
+                            else
+                            {
+                                <h6 style="color:red;">Not Available</h6>
+                            }
+                            <div class="d-flex">
+                                <div class="pricing">
+                                    <p class="price">@*<span class="mr-2 price-dc">70,000BDT</span>*@<span class="price-sale">@Html.DisplayFor(modelItem => item.Price) BDT</span></p>
+                                </div>
+                            </div>
+                            <div class="bottom-area d-flex px-3">
+                                <div class="m-auto d-flex">
+                                    @if (item.Quantity > 0)
+                                    {
+                                        <button style="background-color:#90ba5e;border-radius:20px;border:none;" class="pull-left">@Html.ActionLink("Details", "ProducDetails", new { id = item.ProductId })</button>
+                                        <p style="color:white">hel</p>
+                                        using (Html.BeginForm("AddToCart", "CustomersHome", new { productId = item.ProductId },FormMethod.Post))
+                                        {
+                                        @*<a class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                            <span></span>
+                                        </a>*@
+                                        <button type="submit" style="border-radius:50%;background-color:#90ba5e;border:none;height:45px;width:45px;" class="pull-right"><i class="ion-ios-cart"></i></button>
+                                            }
+
+                                        }
+                                   
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section testimony-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <span class="subheading">Testimony</span>
+                <h2 class="mb-4">Our satisfied customer says</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+            </div>
+        </div>
+        <div class="row ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel">
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/images/person_1.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="name">Garreth Smith</p>
+                                <span class="position">Marketing Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/images/person_2.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="name">Garreth Smith</p>
+                                <span class="position">Interface Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/images/person_3.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="name">Garreth Smith</p>
+                                <span class="position">UI Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/images/person_1.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="name">Garreth Smith</p>
+                                <span class="position">Web Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="testimony-wrap p-4 pb-5">
+                            <div class="user-img mb-5" style="background-image: url(/Content/images/person_1.jpg)">
+                                <span class="quote d-flex align-items-center justify-content-center">
+                                    <i class="icon-quote-left"></i>
+                                </span>
+                            </div>
+                            <div class="text text-center">
+                                <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                <p class="name">Garreth Smith</p>
+                                <span class="position">System Analyst</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<footer class="ftco-footer ftco-section" style="background-color: #669966;">
+    <div class="container">
+        <div class="row">
+            <div class="mouse">
+                <a href="#" class="mouse-icon">
+                    <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+                </a>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Aponar Furniture</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">Menu</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">Shop</a></li>
+                        <li><a href="#" class="py-2 d-block">About</a></li>
+                        <li><a href="#" class="py-2 d-block">Journal</a></li>
+                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Help</h2>
+                    <div class="d-flex">
+                        <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                            <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+                            <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+                            <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+                            <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+                        </ul>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">FAQs</a></li>
+                            <li><a href="#" class="py-2 d-block">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Have a Questions?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">West Raza Bazar, dhanmondi, Dhaka 1207</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+88 01627-560336</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">tusharahmed16135@gmail.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made by Tushar Ahmed
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+

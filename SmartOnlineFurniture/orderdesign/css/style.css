@@ -1,0 +1,26 @@
+ul{
+    list-style-type: none;
+    float: left;
+}
+li{
+ 
+ margin: 5px;
+}
+img{
+	border:1px solid #000;
+	width: 80px;
+	height: 80px;
+}
+.viewImage{
+	width: 850px;
+	height: 450px;
+	border:1px solid #000;
+	float: left;
+	margin-top: 20px;
+	margin-left: 80px;
+}
+
+div > img{
+	width: 100%;
+	height: 100%;
+}

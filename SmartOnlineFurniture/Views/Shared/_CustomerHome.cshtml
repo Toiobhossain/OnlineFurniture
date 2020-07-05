@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Aponar Furniture</title>
+
+
+    
+    <!-- Bootstrap 3.3.7 -->
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+   
+    <!-- jvectormap -->
+   
+   
+
+
+
+    <link rel="icon" type="image/png" href="~/logf/images/icons/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/orderdesign/style.css">
+    <link rel="stylesheet" href="~/Content/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+
+    <link rel="stylesheet" href="~/Content/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/Content/css/flaticon.css">
+    <link rel="stylesheet" href="~/Content/css/icomoon.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+   
+    
+  
+
+
+
+    <style>
+        .textboxdesign {
+            border-radius: 24px;
+        }
+
+        .txtdesign {
+            border-radius: 20px;
+            width: 220px;
+            border-color: black;
+            margin-bottom: auto;
+            margin-top: auto;
+            background-color: white;
+            border-radius: 30px;
+            padding: 5px 10px;
+            margin-top: auto;
+        }
+
+            .txtdesign:hover {
+                padding: 5px 10px;
+                width: 300px;
+                transition: width 0.4s linear;
+                background-color: white;
+                color: black;
+            }
+
+
+            .orderText{
+                height:20px;
+                border-radius:20px;
+                font-size:15px;
+                color:black;
+            }
+            .backgroun{
+                /*background-image: url('/Content/images/star.jpg');*/
+                background-color:#e6ffe6;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  border-radius:20px;
+
+            }
+            .labeldesign{
+                color:black;
+            }
+
+            ul{
+    list-style-type: none;
+    float: left;
+}
+li{
+ 
+ margin: 5px;
+}
+.imge{
+	border:7px solid white;
+	width: 80px;
+	height: 80px;
+}
+.viewImage{
+	width: 750px;
+	height: 370px;
+	border:1px solid white;
+	float: left;
+	margin-top: 20px;
+	margin-left: 80px;
+}
+
+div > img{
+	width: 100%;
+	height: 100%;
+}
+.divdesign{
+    background-image: url('/orderdesign/image/dimg.PNG');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  
+}
+    </style>
+  
+
+</head>
+<body class="goto-here">
+   
+    @RenderBody()
+   
+    <script type="text/javascript">
+		function myButton()
+		{
+			location.reload();
+		}
+
+		var dragItem = document.getElementById("dragElement");
+		var dropLoc = document.getElementById("dropLocation");
+
+		dragItem.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+
+		}
+
+		dropLoc.ondragover = function (evt) {
+		    evt.preventDefault();
+		    console.log("It's Drageover....");
+		}
+
+		dropLoc.ondrop = function (evt) {
+
+		    var dropItem = evt.dataTransfer.getData('key');
+		    evt.preventDefault();
+		    console.log("it's Drop...");
+		    console.log(dropItem);
+		    var myElement = document.getElementById(dropItem);
+		    /*console.log(myElement);*/
+		    myNewElement = document.createElement('img');
+		    myNewElement.src = myElement.src
+		    dropLoc.appendChild(myNewElement);
+		}
+
+		var dragItem1 = document.getElementById("dragElement1");
+		var dragItem2 = document.getElementById("dragElement2");
+		var dragItem3 = document.getElementById("dragElement3");
+		var dragItem4 = document.getElementById("dragElement4");
+		var dragItem5 = document.getElementById("dragElement5");
+		var dragItem6 = document.getElementById("dragElement6");
+		var dragItem7 = document.getElementById("dragElement7");
+		var dragItem8 = document.getElementById("dragElement8");
+		var dragItem9 = document.getElementById("dragElement9");
+
+
+		dragItem1.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem2.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem3.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem4.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem5.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem6.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem7.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem8.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+		dragItem9.ondragstart = function (evt) {
+		    evt.dataTransfer.setData('key', evt.target.id);
+		    console.log("It's Draging...");
+		}
+    </script>
+    
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.easing.1.3.js"></script>
+    <script src="~/Content/js/jquery.waypoints.min.js"></script>
+    <script src="~/Content/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/aos.js"></script>
+    <script src="~/Content/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Content/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/Content/js/google-map.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <script src="~/orderdesign/js"></script>
+
+
+    <script>
+		$(document).ready(function(){
+
+		var quantitiy=0;
+		   $('.quantity-right-plus').click(function(e){
+
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+
+		        // If is not undefined
+
+		            $('#quantity').val(quantity + 1);
+
+
+		            // Increment
+
+		    });
+
+		     $('.quantity-left-minus').click(function(e){
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+
+		        // If is not undefined
+
+		            // Increment
+		            if(quantity>0){
+		            $('#quantity').val(quantity - 1);
+		            }
+		    });
+
+		});
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+

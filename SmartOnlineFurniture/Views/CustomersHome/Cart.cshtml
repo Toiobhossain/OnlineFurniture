@@ -1,0 +1,240 @@
+﻿@model SmartOnlineFurniture.Models.Item
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_CustomerHome.cshtml";
+    var count = 0;
+    int TotalPrice = 0;
+    int PID = 0;
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="padding:10px">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i>Aponar Furniture</i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item nav-link active">@Html.ActionLink("Home", "Index", "CustomersHome")</li>
+
+                <li class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Drawing Order", "DrawingOrder", "CustomersHome")</li>
+                <li class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Customer Care", "Care", "CustomersHome")</li>
+                <li class="nav-item nav-link active">&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Signout", "Logout", "Home")</li>
+               @if (Session["cart"] != null)
+               {
+                   foreach (var item in (List<SmartOnlineFurniture.Models.Item>)Session["cart"])
+                   {
+                       count++;
+
+                   }
+               }
+
+            @using (Html.BeginForm("Cart", "CustomersHome"))
+            {
+                <li class="nav-item nav-link active" style="color:black"><button type="submit" style="border:none;background:none;font-size:18px;"><span class="icon-shopping_cart">[@count]</span></button></li>
+            }
+                <li class="nav-item nav-link active"><img src="@ViewBag.Image" width="30" height="30" style="border-radius:50%" /><span style="color:black;padding-left:5px">@Session["CustomerName"]</span></li>
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+@*cart design*@
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>Product name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Session["cart"] != null)
+                            {
+                                foreach (var item in (List<SmartOnlineFurniture.Models.Item>)Session["cart"])
+                                {
+                                    PID= item.Product.ProductId;
+                                <tr class="text-center">
+                                
+                                    <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                   
+                                    <td class="image-prod"><div class="img" style="background-image:url(@item.Product.ProductImage);"></div></td>
+
+                                    <td class="product-name">
+                                        <h3>@item.Product.ProductName</h3>
+                                       
+                                    </td>
+                                    
+
+                                    <td class="price"><input type="number" id="price" value="@item.Product.Price" style="border:none;width:70px" readonly/></td>
+
+                                    <td class="quantity">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="@item.Quantity" min="1" max="100">
+                                        </div>
+                                    </td>
+
+                                    <td class="total"><input type="number" id="totalprice" value="@item.Product.Price" style="border:none;width:70px" readonly /></td>
+                                </tr><!-- END TR-->
+                                    TotalPrice = TotalPrice+(item.Product.Price* item.Quantity);
+                                }
+                            }
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+@using (Html.BeginForm())
+{
+        <div class="row justify-content-end">
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Cart Totals</h3>
+                    <p class="d-flex">
+                        <span>Subtotal</span>
+                        <input type="number" name="TotalPrice" value="@TotalPrice" style="border:none;padding-left:87px;" readonly />
+                        <input name="CustomerName" value="@Session["CustomerName"]" hidden />
+                        <input name="ProductQuantity" value="@count" hidden />
+                        <input name="PID" value="@PID" hidden />
+                    </p>
+                    <p class="d-flex">
+                        <span>Delivery</span>
+                        <span>$0.00</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Discount</span>
+                        <span>$0.00</span>
+                    </p>
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span>@TotalPrice BDT</span>
+                    </p>
+                </div>
+                @*<p><a href="#" class="btn btn-primary py-3 px-4">Buy Now</a></p>*@
+                <input type="submit" value="Buy Now" class="btn btn-primary py-3 px-4" />
+            </div>
+        </div>
+}
+    </div>
+</section>
+
+
+<footer class="ftco-footer ftco-section" style="background-color: #669966;">
+    <div class="container">
+        <div class="row">
+            <div class="mouse">
+                <a href="#" class="mouse-icon">
+                    <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+                </a>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Aponar Furniture</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">Menu</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">Shop</a></li>
+                        <li><a href="#" class="py-2 d-block">About</a></li>
+                        <li><a href="#" class="py-2 d-block">Journal</a></li>
+                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Help</h2>
+                    <div class="d-flex">
+                        <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                            <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+                            <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+                            <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+                            <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+                        </ul>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">FAQs</a></li>
+                            <li><a href="#" class="py-2 d-block">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Have a Questions?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">West Raza Bazar, dhanmondi, Dhaka 1207</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+88 01627-560336</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">tusharahmed16135@gmail.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made by Tushar Ahmed
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#quantity").change(function () {
+                var quantity = $("#quantity").val();
+                var price = $("#price").val();
+                $("#totalprice").val(price * quantity);
+                @*if(quantity>@Model.Quantity)
+            {
+                $("#quantity").val(quantity);
+            }*@
+
+            });
+
+        });
+    </script>
+}
